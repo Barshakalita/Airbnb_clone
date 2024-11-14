@@ -105,6 +105,12 @@ app.use((err,req,res,next)=>{
   res.status(statusCode).render("error.ejs",{message});
 });
 
+// Assuming `currUser` represents the logged-in user from session or authentication
+app.use((req, res, next) => {
+  res.locals.currUser = req.user || null; // or however you're defining the user
+  next();
+});
+
 
 app.listen(8080, () => {
   console.log("server is listening to port 8080");
